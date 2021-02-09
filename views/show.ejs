@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show</title>
+</head>
+<body>
+  <h1>Show Page</h1>
+  <h2><%= log.title %></h2>
+  <p>Entry: <%= log.entry %></p>
+  <p>
+    <% if (log.shipIsBroken === true) { %> 
+        Ship is broken
+    <% } else { %> 
+        Ship is intact
+    <% } %> 
+  </p>
+  <p>Time of entry: <%= log.createdAt %> </p>
+  <p>Last edited: <%= log.updatedAt %> </p>
+  <nav>
+    <a href="/logs">Back to Index page</a>
+  </nav>
+</body>
+</html>
