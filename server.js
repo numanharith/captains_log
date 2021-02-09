@@ -1,21 +1,19 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
 const Log = require("./models/log.js");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: true
-});
+const port = process.env.PORT || 3000;
+const mongoURI = process.env.DB_URI || "mongodb://localhost:27017/basiccrud";
+
+mongoose.connect(mongoURI, { useNewUrlParser: true });
 mongoose.connection.once("open", () => {
   console.log("connected to mongo");
 });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
 // New route
 app.get("/logs/new", (req, res) => {
@@ -25,7 +23,7 @@ app.get("/logs/new", (req, res) => {
 // Delete route
 app.delete("/logs/:id", (req, res) => {
   Log.findByIdAndRemove(req.params.id, (err, data) => {
-    res.redirect("/logs"); 
+    res.redirect("/logs");
   });
 });
 
