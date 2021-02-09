@@ -5,7 +5,7 @@ const Log = require("./models/log.js");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
-mongoose.connect("mongodb://localhost:27017/basiccrud", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: true
